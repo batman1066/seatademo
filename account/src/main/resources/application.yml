@@ -1,0 +1,40 @@
+spring:
+  application:
+    name: account # 服务名称
+nacos:
+  config:
+    server-addr: 192.168.1.122:8848 # Nacos地址
+    username: nacos
+    password: 123456
+    namespace: dev
+    auto-refresh: true
+    config-long-poll-timeout: 46000
+    config-retry-time: 2333
+    data-id: account.yaml
+    group: DEFAULT_GROUP
+    max-retry: 10
+    type: yaml
+    ext-config:
+      - data-id: common.yaml
+        type: yaml
+        enable-remote-sync-config: true
+logging:
+  level:
+    root: DEBUG
+    org.apache.dubbo: DEBUG
+
+# application.yml
+dubbo:
+  registry:
+    address: nacos://192.168.1.122:8848?username=nacos&password=123456
+    # This will enable application-level service discovery only (the recommended service discovery method for Dubbo3).
+    # For users upgrading from Dubbo2.x, please set the value to 'all' for smooth migration.
+    register-mode: instance
+    parameters:
+      namespace: dev
+  protocol:
+    name: dubbo
+    port: 50052
+  application:
+    name: account
+    logger: slf4j
