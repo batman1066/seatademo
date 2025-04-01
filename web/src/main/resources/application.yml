@@ -7,6 +7,8 @@ nacos:
     username: nacos
     password: 123456
     namespace: dev
+    bootstrap:
+      enable: true
     auto-refresh: true
     config-long-poll-timeout: 46000
     config-retry-time: 2333
