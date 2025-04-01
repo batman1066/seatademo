@@ -20,8 +20,7 @@ nacos:
       - data-id: common.yaml
         type: yaml
         enable-remote-sync-config: true
-
-# application.yml
+#可放nacos
 dubbo:
   registry:
     address: nacos://192.168.1.122:8848?username=nacos&password=123456
