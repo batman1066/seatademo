@@ -1,0 +1,15 @@
+这些配置放进nacos:
+dataId: gateway.yaml
+server.port: 8088
+
+dataId: gateway-route.yaml
+spring:
+  cloud:
+    gateway:
+      routes:
+        - id: my_route
+          uri: http://127.0.0.1:8081
+          predicates:
+            - Path=/web/**
+          filters:
+            - StripPrefix=1

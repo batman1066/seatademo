@@ -1,0 +1,21 @@
+这些配置放进nacos:
+dataId: account.yaml
+test.p: aaa
+dubbo.service.port: 50052
+#可放nacos
+dubbo:
+  registry:
+    address: nacos://${nacos.config.server-addr}?username=${nacos.config.username}&password=${nacos.config.password}
+    # This will enable application-level service discovery only (the recommended service discovery method for Dubbo3).
+    # For users upgrading from Dubbo2.x, please set the value to 'all' for smooth migration.
+    register-mode: instance
+    parameters:
+      namespace: ${nacos.config.namespace}
+  protocol:
+    name: tri
+    port: ${nacos.config.namespace}
+  application:
+    name: ${spring.application.name}
+    logger: slf4j
+  consumer:
+    check: false

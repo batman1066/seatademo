@@ -18,20 +18,3 @@ nacos:
     type: yaml
     shared-configs:
       - data-id: common.yaml
-#可放nacos
-dubbo:
-  registry:
-    address: nacos://192.168.1.122:8848?username=nacos&password=123456
-    # This will enable application-level service discovery only (the recommended service discovery method for Dubbo3).
-    # For users upgrading from Dubbo2.x, please set the value to 'all' for smooth migration.
-    register-mode: instance
-    parameters:
-      namespace: dev
-  protocol:
-    name: tri
-    port: 50051
-  application:
-    name: WebApplication-dubbo
-    logger: slf4j
-  consumer:
-    check: false
