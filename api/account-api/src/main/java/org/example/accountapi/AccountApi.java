@@ -8,4 +8,7 @@ package org.example.accountapi;
  **/
 public interface AccountApi {
     String test(String hehe);
+    
+    String debit(String userId, Integer money);
+
 }

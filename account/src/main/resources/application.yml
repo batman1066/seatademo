@@ -20,3 +20,6 @@ nacos:
       - data-id: common.yaml
         type: yaml
         enable-remote-sync-config: true
+      - data-id: seata_app_client.yaml
+        type: yaml
+        enable-remote-sync-config: true

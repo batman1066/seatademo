@@ -25,5 +25,9 @@
             <groupId>org.example</groupId>
             <artifactId>dubboappbase</artifactId>
         </dependency>
+        <dependency>
+            <groupId>org.example</groupId>
+            <artifactId>dbappbase</artifactId>
+        </dependency>
     </dependencies>
 </project>

@@ -25,13 +25,17 @@
     <modules>
         <module>api</module>
         <module>common</module>
-        <module>account</module>
         <module>web</module>
         <module>gateway</module>
         <module>dubboappbase</module>
+        <module>dbappbase</module>
         <module>cloudappbase</module>
         <module>dubbocommon</module>
         <module>cloudcommon</module>
+        <module>bussiness</module>
+        <module>order</module>
+        <module>storage</module>
+        <module>account</module>
     </modules>
     <dependencies>
         <dependency>
@@ -79,8 +83,28 @@
             </dependency>
             <dependency>
                 <groupId>org.example</groupId>
+                <artifactId>dbappbase</artifactId>
+                <version>${app.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.example</groupId>
                 <artifactId>dubboappbase</artifactId>
                 <version>${app.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.example</groupId>
+                <artifactId>bussiness-api</artifactId>
+                <version>${api.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.example</groupId>
+                <artifactId>order-api</artifactId>
+                <version>${api.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.example</groupId>
+                <artifactId>storage-api</artifactId>
+                <version>${api.version}</version>
             </dependency>
             <dependency>
                 <groupId>org.example</groupId>
@@ -95,6 +119,11 @@
                 <version>3.3.0</version>
                 <type>pom</type>
                 <scope>import</scope>
+            </dependency>
+            <dependency>
+                <groupId>org.apache.seata</groupId>
+                <artifactId>seata-spring-boot-starter</artifactId>
+                <version>2.2.0</version>
             </dependency>
         </dependencies>
     </dependencyManagement>

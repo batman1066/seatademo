@@ -18,6 +18,9 @@
 	</properties>
 
 	<modules>
+		<module>bussiness-api</module>
+		<module>order-api</module>
+		<module>storage-api</module>
 		<module>account-api</module>
 	</modules>
 </project>

@@ -1,5 +1,5 @@
 这些配置放进nacos:
-dataId: web.yaml
+1.dataId: web.yaml
 server.port: 8081
 dubbo.service.port: 50051
 #可放nacos(springcloud里以下的值动态获取只能在该文件范围内)

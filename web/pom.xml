@@ -26,7 +26,10 @@
             <groupId>org.example</groupId>
             <artifactId>dubboappbase</artifactId>
         </dependency>
-
+        <dependency>
+            <groupId>org.example</groupId>
+            <artifactId>bussiness-api</artifactId>
+        </dependency>
         <dependency>
             <groupId>org.example</groupId>
             <artifactId>account-api</artifactId>
