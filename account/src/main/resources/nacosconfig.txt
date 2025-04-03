@@ -13,7 +13,7 @@ dubbo:
       namespace: ${nacos.config.namespace}
   protocol:
     name: tri
-    port: ${nacos.config.namespace}
+    port: ${dubbo.service.port}
   application:
     name: ${spring.application.name}
     logger: slf4j

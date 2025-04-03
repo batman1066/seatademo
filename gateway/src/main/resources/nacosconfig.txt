@@ -1,6 +1,6 @@
 这些配置放进nacos:
 dataId: gateway.yaml
-server.port: 8088
+server.port: 8080
 
 dataId: gateway-route.yaml
 spring:

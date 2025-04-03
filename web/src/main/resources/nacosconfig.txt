@@ -2,20 +2,20 @@
 dataId: web.yaml
 server.port: 8081
 dubbo.service.port: 50051
-#可放nacos
+#可放nacos(springcloud里以下的值动态获取只能在该文件范围内)
 dubbo:
   registry:
-    address: nacos://${nacos.config.server-addr}?username=${nacos.config.username}&password=${nacos.config.password}
+    address: nacos://192.168.1.122:8848?username=nacos&password=123456
     # This will enable application-level service discovery only (the recommended service discovery method for Dubbo3).
     # For users upgrading from Dubbo2.x, please set the value to 'all' for smooth migration.
     register-mode: instance
     parameters:
-      namespace: ${nacos.config.namespace}
+      namespace: dev
   protocol:
     name: tri
-    port: ${nacos.config.namespace}
+    port: ${dubbo.service.port}
   application:
-    name: ${spring.application.name}
+    name: web
     logger: slf4j
   consumer:
     check: false
