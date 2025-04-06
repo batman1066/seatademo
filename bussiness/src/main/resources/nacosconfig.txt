@@ -29,10 +29,10 @@ seata:
   access-key: aliyunAccessKey
   secret-key: aliyunSecretKey
   enable-auto-data-source-proxy: true
-  #data-source-proxy-mode: XA
+  data-source-proxy-mode: AT
   use-jdk-proxy: false
   expose-proxy: false
-  scan-packages: firstPackage,secondPackage
+  scan-packages: firstPackage,secondPackage,org.example
   excludes-for-scanning: firstBeanNameForExclude,secondBeanNameForExclude
   excludes-for-auto-proxying: firstClassNameForExclude,secondClassNameForExclude
   client:
