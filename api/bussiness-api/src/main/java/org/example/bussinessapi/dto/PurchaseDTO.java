@@ -14,11 +14,12 @@ import java.io.Serializable;
 public class PurchaseDTO implements Serializable {
     /**
      * userId – 用户ID
-       commodityCode – 商品编号
-       orderCount – 订购数量
+     * commodityCode – 商品编号
+     * orderCount – 订购数量
      */
     String userId;
     String commodityCode;
     Integer orderCount;
+    String transactionMode;
 
 }

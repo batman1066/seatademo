@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="org.example.account.mapper.AccountChangeRecordMapper">
+
+    <resultMap id="BaseResultMap" type="org.example.account.domain.AccountChangeRecordDO">
+            <id property="id" column="id" />
+            <result property="accountId" column="account_id" />
+            <result property="businessId" column="business_id" />
+            <result property="srcMoney" column="src_money" />
+            <result property="targetMoney" column="target_money" />
+            <result property="seataType" column="seata_type" />
+            <result property="seataStatus" column="seata_status" />
+    </resultMap>
+
+    <sql id="Base_Column_List">
+        id,account_id,business_id,src_money,target_money,seata_type,
+        seata_status
+    </sql>
+</mapper>

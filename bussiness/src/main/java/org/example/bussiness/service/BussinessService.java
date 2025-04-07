@@ -10,4 +10,6 @@ import org.example.bussinessapi.dto.PurchaseDTO;
  **/
 public interface BussinessService {
     String purchase(PurchaseDTO dto);
+
+    String tccPurchase(PurchaseDTO dto);
 }

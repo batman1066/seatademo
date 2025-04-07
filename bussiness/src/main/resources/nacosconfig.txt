@@ -1,7 +1,7 @@
 这些配置放进nacos:
 1.dataId: bussiness.yaml
 
-dubbo.service.port: 50053
+dubbo.service.port: 50153
 #可放nacos
 dubbo:
   registry:
@@ -34,6 +34,7 @@ seata:
   expose-proxy: false
   scan-packages: firstPackage,secondPackage,org.example
   excludes-for-scanning: firstBeanNameForExclude,secondBeanNameForExclude
+  #这些类datasource不会被代理
   excludes-for-auto-proxying: firstClassNameForExclude,secondClassNameForExclude
   client:
     rm:

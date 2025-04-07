@@ -19,10 +19,16 @@ import javax.annotation.Resource;
 public class BussinessDubbo implements BussinessApi {
     @Resource
     private BussinessService businessService;
-    
+
     @Override
     public String purchase(PurchaseDTO dto) {
-        businessService.purchase(dto);
+        if (dto.getTransactionMode().equals("AT")) {
+            businessService.purchase(dto);
+        } else if (dto.getTransactionMode().equals("TCC")) {
+            businessService.tccPurchase(dto);
+        } else if (dto.getTransactionMode().equals("SAGA")) {
+            businessService.purchase(dto);
+        }
         return "SUCCESS";
     }
 }

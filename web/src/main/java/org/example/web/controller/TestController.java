@@ -34,11 +34,13 @@ public class TestController {
     @GetMapping("/purchase")
     public String purchase(@RequestParam(value = "userId", defaultValue = "1") String userId,
                            @RequestParam(value = "commodityCode", defaultValue = "001") String commodityCode,
-                           @RequestParam(value = "orderCount", defaultValue = "1") Integer orderCount) {
+                           @RequestParam(value = "orderCount", defaultValue = "1") Integer orderCount,
+                           @RequestParam(value = "transactionMode", defaultValue = "AT") String transactionMode) {
         PurchaseDTO purchaseDTO = new PurchaseDTO();
         purchaseDTO.setUserId(userId);
         purchaseDTO.setCommodityCode(commodityCode);
         purchaseDTO.setOrderCount(orderCount);
+        purchaseDTO.setTransactionMode(transactionMode);
         log.info("rest api purchaseDTO:{}", purchaseDTO);
         return bussinessApi.purchase(purchaseDTO);
     }

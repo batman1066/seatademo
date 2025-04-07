@@ -1,7 +1,7 @@
 这些配置放进nacos:
 1.dataId: order.yaml
 
-dubbo.service.port: 50053
+dubbo.service.port: 50153
 #可放nacos
 dubbo:
   registry:
