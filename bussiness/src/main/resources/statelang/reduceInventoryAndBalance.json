@@ -1,0 +1,471 @@
+{
+  "Name": "reduceInventoryAndBalance",
+  "Comment": "reduce inventory then reduce balance in a transaction",
+  "Version": "0.0.1",
+  "style": {
+    "bounds": {
+      "x": 412,
+      "y": 52,
+      "width": 36,
+      "height": 36
+    }
+  },
+  "States": {
+    "ReduceInventory": {
+      "style": {
+        "bounds": {
+          "x": 380,
+          "y": 130,
+          "width": 100,
+          "height": 80
+        }
+      },
+      "Name": "ReduceInventory",
+      "IsForCompensation": false,
+      "Input": [
+        "$.[businessKey]",
+        "$.[commodityCode]",
+        "$.[count]"
+      ],
+      "Output": {
+        "reduceInventoryResult": "$.#root"
+      },
+      "Status": {
+        "#root == true": "SU",
+        "#root == false": "FA",
+        "$Exception{java.lang.Throwable}": "UN"
+      },
+      "Retry": [],
+      "ServiceName": "inventorySagaApi",
+      "ServiceMethod": "reduce",
+      "CompensateState": "CompensateReduceInventory",
+      "Type": "ServiceTask",
+      "Next": "ChoiceState",
+      "edge": {
+        "ChoiceState": {
+          "style": {
+            "waypoints": [
+              {
+                "original": {
+                  "x": 430,
+                  "y": 210
+                },
+                "x": 430,
+                "y": 210
+              },
+              {
+                "x": 440,
+                "y": 215
+              },
+              {
+                "original": {
+                  "x": 440,
+                  "y": 235
+                },
+                "x": 440,
+                "y": 235
+              }
+            ],
+            "source": "ReduceInventory",
+            "target": "ChoiceState"
+          },
+          "Type": "Transition"
+        },
+        "CompensateReduceInventory": {
+          "style": {
+            "waypoints": [
+              {
+                "original": {
+                  "x": 380,
+                  "y": 170
+                },
+                "x": 380,
+                "y": 170
+              },
+              {
+                "x": 340,
+                "y": 170
+              },
+              {
+                "original": {
+                  "x": 320,
+                  "y": 170
+                },
+                "x": 320,
+                "y": 170
+              }
+            ],
+            "source": "ReduceInventory",
+            "target": "CompensateReduceInventory"
+          },
+          "Type": "Compensation"
+        }
+      }
+    },
+    "CompensationTrigger": {
+      "style": {
+        "bounds": {
+          "x": 592,
+          "y": 352,
+          "width": 36,
+          "height": 36
+        }
+      },
+      "Name": "CompensationTrigger",
+      "Type": "CompensationTrigger",
+      "Next": "Fail",
+      "edge": {
+        "Fail": {
+          "style": {
+            "waypoints": [
+              {
+                "original": {
+                  "x": 610,
+                  "y": 352
+                },
+                "x": 610,
+                "y": 352
+              },
+              {
+                "x": 630,
+                "y": 278
+              },
+              {
+                "original": {
+                  "x": 630,
+                  "y": 258
+                },
+                "x": 630,
+                "y": 258
+              }
+            ],
+            "source": "CompensationTrigger",
+            "target": "Fail"
+          },
+          "Type": "Transition"
+        }
+      }
+    },
+    "Fail": {
+      "style": {
+        "bounds": {
+          "x": 612,
+          "y": 222,
+          "width": 36,
+          "height": 36
+        }
+      },
+      "Name": "Fail",
+      "ErrorCode": "PURCHASE_FAILED",
+      "Message": "purchase failed",
+      "Type": "Fail"
+    },
+    "ChoiceState": {
+      "style": {
+        "bounds": {
+          "x": 415,
+          "y": 235,
+          "width": 50,
+          "height": 50
+        }
+      },
+      "Name": "ChoiceState",
+      "Type": "Choice",
+      "Choices": [
+        {
+          "Expression": "[reduceInventoryResult] == false",
+          "Next": "Fail"
+        },
+        {
+          "Expression": "[reduceInventoryResult] == true",
+          "Next": "ReduceBalance"
+        }
+      ],
+      "Default": "Fail",
+      "edge": {
+        "Fail": {
+          "style": {
+            "waypoints": [
+              {
+                "original": {
+                  "x": 465,
+                  "y": 260
+                },
+                "x": 465,
+                "y": 260
+              },
+              {
+                "x": 592,
+                "y": 240
+              },
+              {
+                "original": {
+                  "x": 612,
+                  "y": 240
+                },
+                "x": 612,
+                "y": 240
+              }
+            ],
+            "source": "ChoiceState",
+            "target": "Fail"
+          },
+          "Type": "ChoiceEntry"
+        },
+        "ReduceBalance": {
+          "style": {
+            "waypoints": [
+              {
+                "original": {
+                  "x": 440,
+                  "y": 285
+                },
+                "x": 440,
+                "y": 285
+              },
+              {
+                "x": 440,
+                "y": 300
+              },
+              {
+                "original": {
+                  "x": 440,
+                  "y": 320
+                },
+                "x": 440,
+                "y": 320
+              }
+            ],
+            "source": "ChoiceState",
+            "target": "ReduceBalance"
+          },
+          "Type": "ChoiceEntry"
+        }
+      }
+    },
+    "CompensateReduceInventory": {
+      "style": {
+        "bounds": {
+          "x": 220,
+          "y": 130,
+          "width": 100,
+          "height": 80
+        }
+      },
+      "Name": "CompensateReduceInventory",
+      "IsForCompensation": true,
+      "Input": [
+        "$.[businessKey]"
+      ],
+      "Output": {},
+      "Status": {},
+      "Retry": [],
+      "ServiceName": "inventorySagaApi",
+      "ServiceMethod": "compensateReduce",
+      "Type": "ServiceTask"
+    },
+    "CompensateReduceBalance": {
+      "style": {
+        "bounds": {
+          "x": 220,
+          "y": 310,
+          "width": 100,
+          "height": 80
+        }
+      },
+      "Name": "CompensateReduceBalance",
+      "IsForCompensation": true,
+      "Input": [
+        "$.[businessKey]",
+        "$.[params]"
+      ],
+      "Output": {},
+      "Status": {},
+      "Retry": [],
+      "ServiceName": "balanceSagaApi",
+      "ServiceMethod": "compensateReduce",
+      "Type": "ServiceTask"
+    },
+    "Succeed": {
+      "style": {
+        "bounds": {
+          "x": 412,
+          "y": 442,
+          "width": 36,
+          "height": 36
+        }
+      },
+      "Name": "Succeed",
+      "Type": "Succeed"
+    },
+    "ReduceBalance": {
+      "style": {
+        "bounds": {
+          "x": 390,
+          "y": 320,
+          "width": 100,
+          "height": 80
+        }
+      },
+      "Name": "ReduceBalance",
+      "IsForCompensation": false,
+      "Input": [
+        "$.[businessKey]",
+        "$.[amount]",
+        "$.[params]"
+      ],
+      "Output": {
+        "compensateReduceBalanceResult": "$.#root"
+      },
+      "Status": {
+        "#root == true": "SU",
+        "#root == false": "FA",
+        "$Exception{java.lang.Throwable}": "UN"
+      },
+      "Retry": [],
+      "ServiceName": "balanceSagaApi",
+      "ServiceMethod": "reduce",
+      "CompensateState": "CompensateReduceBalance",
+      "Catch": [
+        {
+          "Exceptions": [
+            "java.lang.Throwable"
+          ],
+          "Next": "CompensationTrigger"
+        }
+      ],
+      "Type": "ServiceTask",
+      "catch": {
+        "style": {
+          "bounds": {
+            "x": 462,
+            "y": 372,
+            "width": 36,
+            "height": 36
+          }
+        },
+        "edge": {
+          "CompensationTrigger": {
+            "style": {
+              "waypoints": [
+                {
+                  "original": {
+                    "x": 498,
+                    "y": 390
+                  },
+                  "x": 498,
+                  "y": 390
+                },
+                {
+                  "x": 572,
+                  "y": 370
+                },
+                {
+                  "original": {
+                    "x": 592,
+                    "y": 370
+                  },
+                  "x": 592,
+                  "y": 370
+                }
+              ],
+              "source": "ReduceBalance",
+              "target": "CompensationTrigger"
+            },
+            "Type": "ExceptionMatch"
+          }
+        }
+      },
+      "edge": {
+        "CompensateReduceBalance": {
+          "style": {
+            "waypoints": [
+              {
+                "original": {
+                  "x": 390,
+                  "y": 360
+                },
+                "x": 390,
+                "y": 360
+              },
+              {
+                "x": 340,
+                "y": 350
+              },
+              {
+                "original": {
+                  "x": 320,
+                  "y": 350
+                },
+                "x": 320,
+                "y": 350
+              }
+            ],
+            "source": "ReduceBalance",
+            "target": "CompensateReduceBalance"
+          },
+          "Type": "Compensation"
+        },
+        "Succeed": {
+          "style": {
+            "waypoints": [
+              {
+                "original": {
+                  "x": 440,
+                  "y": 400
+                },
+                "x": 440,
+                "y": 400
+              },
+              {
+                "x": 430,
+                "y": 422
+              },
+              {
+                "original": {
+                  "x": 430,
+                  "y": 442
+                },
+                "x": 430,
+                "y": 442
+              }
+            ],
+            "source": "ReduceBalance",
+            "target": "Succeed"
+          },
+          "Type": "Transition"
+        }
+      },
+      "Next": "Succeed"
+    }
+  },
+  "StartState": "ReduceInventory",
+  "edge": {
+    "style": {
+      "waypoints": [
+        {
+          "original": {
+            "x": 430,
+            "y": 88
+          },
+          "x": 430,
+          "y": 88
+        },
+        {
+          "x": 430,
+          "y": 110
+        },
+        {
+          "original": {
+            "x": 430,
+            "y": 130
+          },
+          "x": 430,
+          "y": 130
+        }
+      ],
+      "target": "ReduceInventory"
+    },
+    "Type": "Transition"
+  }
+}

@@ -27,7 +27,7 @@ public class BussinessDubbo implements BussinessApi {
         } else if (dto.getTransactionMode().equals("TCC")) {
             businessService.tccPurchase(dto);
         } else if (dto.getTransactionMode().equals("SAGA")) {
-            businessService.purchase(dto);
+            businessService.sagaPurchase(dto);
         }
         return "SUCCESS";
     }

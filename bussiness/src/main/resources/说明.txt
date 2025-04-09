@@ -1,0 +1,4 @@
+1.这个项目可以 TCC、SAGA、XA/AT(二选一)混合运行
+2.重写了两个类，SeataSagaAutoConfiguration因为线程池没有注入而重写
+SagaResourceManager因为server调用这个服务时这个类里面的有些类的包名还是旧的
+3.TCC\SAGA两个demo相关的类需要加入到代理排除列表，不然运行时会WARN 一些问题
