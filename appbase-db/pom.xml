@@ -11,6 +11,17 @@
     <artifactId>appbase-db</artifactId>
     <packaging>jar</packaging>
     <dependencies>
+        <!-- spring-boot-starter -->
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter</artifactId>
+        </dependency>
+        <!-- Nacos 配置中心 -->
+        <dependency>
+            <groupId>com.alibaba.boot</groupId>
+            <artifactId>nacos-config-spring-boot-starter</artifactId>
+        </dependency>
+
         <!--seata-->
         <dependency>
             <groupId>org.apache.seata</groupId>
