@@ -15,17 +15,35 @@
 
     <dependencies>
         <dependency>
-            <groupId>org.example</groupId>
-            <artifactId>cloudcommon</artifactId>
-        </dependency>
-        <dependency>
-            <groupId>org.example</groupId>
-            <artifactId>cloudappbase</artifactId>
-        </dependency>
-
-        <dependency>
             <groupId>org.springframework.cloud</groupId>
             <artifactId>spring-cloud-starter-gateway</artifactId>
+        </dependency>
+
+        <!--common公共工具类-->
+        <dependency>
+            <groupId>org.example</groupId>
+            <artifactId>common</artifactId>
+        </dependency>
+        <!-- sentinel -->
+        <dependency>
+            <groupId>org.example</groupId>
+            <artifactId>sentinel-my-starter</artifactId>
+        </dependency>
+        <!-- sentinel-gateway -->
+        <dependency>
+            <groupId>com.alibaba.cloud</groupId>
+            <artifactId>spring-cloud-alibaba-sentinel-gateway</artifactId>
+            <version>2021.1</version>
+        </dependency>
+        <dependency>
+            <artifactId>sentinel-api-gateway-adapter-common</artifactId>
+            <groupId>com.alibaba.csp</groupId>
+            <version>${sentinel.version}</version>
+        </dependency>
+        <dependency>
+            <artifactId>sentinel-spring-cloud-gateway-adapter</artifactId>
+            <groupId>com.alibaba.csp</groupId>
+            <version>${sentinel.version}</version>
         </dependency>
     </dependencies>
 </project>

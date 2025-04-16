@@ -19,10 +19,13 @@
         <java.version>1.8</java.version>
         <api.version>0.0.1-SNAPSHOT</api.version>
         <app.version>0.0.1-SNAPSHOT</app.version>
+        <sentinel-my-starter.version>0.0.1-SNAPSHOT</sentinel-my-starter.version>
+
         <nacos-starter.version>0.2.12</nacos-starter.version>
         <gateway-starter.version>3.1.9</gateway-starter.version>
         <dubbo-bom.version>3.3.0</dubbo-bom.version>
         <seata-starter.version>2.2.0</seata-starter.version>
+        <sentinel.version>1.8.6</sentinel.version>
         <mysql.version>8.0.28</mysql.version>
         <mybatis-starter.version>3.5.11</mybatis-starter.version>
     </properties>
@@ -31,11 +34,9 @@
         <module>common</module>
         <module>web</module>
         <module>gateway</module>
-        <module>dubboappbase</module>
-        <module>dbappbase</module>
-        <module>cloudappbase</module>
-        <module>dubbocommon</module>
-        <module>cloudcommon</module>
+        <module>appbase-dubbo</module>
+        <module>appbase-db</module>
+        <module>appbase-mvc</module>
         <module>bussiness</module>
         <module>order</module>
         <module>storage</module>
@@ -61,8 +62,6 @@
     </dependencies>
     <dependencyManagement>
         <dependencies>
-
-
             <dependency>
                 <groupId>org.example</groupId>
                 <artifactId>common</artifactId>
@@ -70,27 +69,17 @@
             </dependency>
             <dependency>
                 <groupId>org.example</groupId>
-                <artifactId>cloudcommon</artifactId>
+                <artifactId>appbase-db</artifactId>
                 <version>${app.version}</version>
             </dependency>
             <dependency>
                 <groupId>org.example</groupId>
-                <artifactId>dubbocommon</artifactId>
+                <artifactId>appbase-dubbo</artifactId>
                 <version>${app.version}</version>
             </dependency>
             <dependency>
                 <groupId>org.example</groupId>
-                <artifactId>cloudappbase</artifactId>
-                <version>${app.version}</version>
-            </dependency>
-            <dependency>
-                <groupId>org.example</groupId>
-                <artifactId>dbappbase</artifactId>
-                <version>${app.version}</version>
-            </dependency>
-            <dependency>
-                <groupId>org.example</groupId>
-                <artifactId>dubboappbase</artifactId>
+                <artifactId>appbase-mvc</artifactId>
                 <version>${app.version}</version>
             </dependency>
             <dependency>
@@ -141,6 +130,11 @@
                 <groupId>com.baomidou</groupId>
                 <artifactId>mybatis-plus-boot-starter</artifactId>
                 <version>${mybatis-starter.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.example</groupId>
+                <artifactId>sentinel-my-starter</artifactId>
+                <version>${sentinel-my-starter.version}</version>
             </dependency>
         </dependencies>
     </dependencyManagement>

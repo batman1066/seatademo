@@ -5,6 +5,7 @@ import org.apache.dubbo.config.annotation.DubboReference;
 import org.example.accountapi.AccountApi;
 import org.example.bussinessapi.BussinessApi;
 import org.example.bussinessapi.dto.PurchaseDTO;
+import org.example.mvc.wrapper.RestWrapper;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -19,6 +20,7 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 @RequestMapping("/test")
 @Slf4j
+@RestWrapper
 public class TestController {
     @DubboReference
     BussinessApi bussinessApi;

@@ -1,6 +1,9 @@
 spring:
   application:
     name: web # 服务名称
+  #允许循环依赖
+  main:
+    allow-circular-references: true
 nacos:
   config:
     server-addr: 192.168.1.122:8848 # Nacos地址
@@ -16,5 +19,13 @@ nacos:
     group: DEFAULT_GROUP
     max-retry: 10
     type: yaml
-    shared-configs:
+    ext-config:
+      - data-id: dubbo.yaml
+        type: yaml
+        enable-remote-sync-config: true
       - data-id: common.yaml
+        type: yaml
+        enable-remote-sync-config: true
+      - data-id: sentinel-dubbo.yaml
+        type: yaml
+        enable-remote-sync-config: true

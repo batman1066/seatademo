@@ -23,3 +23,6 @@ nacos:
       - data-id: gateway-route.yaml
         type: yaml
         enable-remote-sync-config: true
+      - data-id: sentinel-gateway.yaml
+        type: yaml
+        enable-remote-sync-config: true

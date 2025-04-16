@@ -17,9 +17,15 @@ nacos:
     max-retry: 10
     type: yaml
     ext-config:
+      - data-id: dubbo.yaml
+        type: yaml
+        enable-remote-sync-config: true
       - data-id: common.yaml
         type: yaml
         enable-remote-sync-config: true
       - data-id: seata_app_client.yaml
+        type: yaml
+        enable-remote-sync-config: true
+      - data-id: sentinel-dubbo.yaml
         type: yaml
         enable-remote-sync-config: true

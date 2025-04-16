@@ -7,11 +7,24 @@
         <version>0.0.1-SNAPSHOT</version>
     </parent>
 
-    <artifactId>cloudcommon</artifactId>
+    <artifactId>appbase-mvc</artifactId>
+    <packaging>jar</packaging>
+
+    <name>webcommon</name>
+
     <dependencies>
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-web</artifactId>
+            <scope>provided</scope>
+        </dependency>
         <dependency>
             <groupId>org.example</groupId>
             <artifactId>common</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>com.alibaba</groupId>
+            <artifactId>fastjson</artifactId>
         </dependency>
     </dependencies>
 </project>

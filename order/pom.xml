@@ -13,10 +13,7 @@
     <name>order</name>
     <description>order</description>
     <dependencies>
-        <dependency>
-            <groupId>org.example</groupId>
-            <artifactId>dubbocommon</artifactId>
-        </dependency>
+        <!--api-->
         <dependency>
             <groupId>org.example</groupId>
             <artifactId>order-api</artifactId>
@@ -25,14 +22,25 @@
             <groupId>org.example</groupId>
             <artifactId>account-api</artifactId>
         </dependency>
+        <!--common公共工具类-->
         <dependency>
             <groupId>org.example</groupId>
-            <artifactId>dubboappbase</artifactId>
+            <artifactId>common</artifactId>
+        </dependency>
+        <!--依赖和工具类-->
+        <dependency>
+            <groupId>org.example</groupId>
+            <artifactId>appbase-dubbo</artifactId>
         </dependency>
 
         <dependency>
             <groupId>org.example</groupId>
-            <artifactId>dbappbase</artifactId>
+            <artifactId>appbase-db</artifactId>
+        </dependency>
+        <!--sentinel-->
+        <dependency>
+            <groupId>org.example</groupId>
+            <artifactId>sentinel-my-starter</artifactId>
         </dependency>
     </dependencies>
 

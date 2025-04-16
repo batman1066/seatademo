@@ -8,7 +8,8 @@
         <artifactId>seatademo</artifactId>
         <version>0.0.1-SNAPSHOT</version>
     </parent>
-    <artifactId>dbappbase</artifactId>
+    <artifactId>appbase-db</artifactId>
+    <packaging>jar</packaging>
     <dependencies>
         <!--seata-->
         <dependency>

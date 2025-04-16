@@ -8,8 +8,18 @@
         <artifactId>seatademo</artifactId>
         <version>0.0.1-SNAPSHOT</version>
     </parent>
-    <artifactId>cloudappbase</artifactId>
+    <artifactId>appbase-dubbo</artifactId>
+    <packaging>jar</packaging>
     <dependencies>
-        
+
+        <!--dubbo-->
+        <dependency>
+            <groupId>org.apache.dubbo</groupId>
+            <artifactId>dubbo-spring-boot-starter</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.apache.dubbo</groupId>
+            <artifactId>dubbo-nacos-spring-boot-starter</artifactId>
+        </dependency>
     </dependencies>
 </project>

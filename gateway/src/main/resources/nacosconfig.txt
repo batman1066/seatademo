@@ -1,6 +1,11 @@
 这些配置放进nacos:
 1.dataId: gateway.yaml
 server.port: 8080
+spring:
+  cloud:
+    sentinel:
+      transport:
+        port: 8720
 
 2.dataId: gateway-route.yaml
 spring:
