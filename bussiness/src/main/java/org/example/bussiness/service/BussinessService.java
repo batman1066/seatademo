@@ -9,7 +9,10 @@ import org.example.bussinessapi.dto.PurchaseDTO;
  * @date 2025/4/3 16:39
  **/
 public interface BussinessService {
+    //XA AT 调整yaml配置
     String purchase(PurchaseDTO dto);
 
     String tccPurchase(PurchaseDTO dto);
+
+    String sagaPurchase(PurchaseDTO dto);
 }

@@ -5,14 +5,24 @@ import lombok.extern.slf4j.Slf4j;
 import org.apache.dubbo.config.annotation.DubboReference;
 import org.apache.seata.core.context.RootContext;
 import org.apache.seata.core.model.BranchType;
+import org.apache.seata.saga.engine.StateMachineEngine;
+import org.apache.seata.saga.statelang.domain.StateMachineInstance;
 import org.apache.seata.spring.annotation.GlobalTransactional;
+import org.example.accountapi.BalanceSagaApi;
+import org.example.bussiness.sagacallback.PurchaseCallback;
 import org.example.bussiness.service.BussinessService;
 import org.example.bussinessapi.dto.PurchaseDTO;
 import org.example.orderapi.OrderApi;
 import org.example.orderapi.OrderTccApi;
+import org.example.storageapi.InventorySagaApi;
 import org.example.storageapi.StorageApi;
 import org.example.storageapi.StorageTccApi;
 import org.springframework.stereotype.Service;
+
+import javax.annotation.Resource;
+import java.math.BigDecimal;
+import java.util.HashMap;
+import java.util.Map;
 
 /**
  * BussinessServiceImpl
@@ -27,13 +37,21 @@ public class BussinessServiceImpl implements BussinessService {
     private StorageApi storageApi;
     @DubboReference
     private StorageTccApi storageTccApi;
+    @DubboReference(id = "inventorySagaApi")
+    private InventorySagaApi inventorySagaApi;
 
 
     @DubboReference
     private OrderApi orderApi;
-
     @DubboReference
     private OrderTccApi orderTccApi;
+
+    @DubboReference(id = "balanceSagaApi")
+    private BalanceSagaApi balanceSagaApi;
+
+
+    @Resource
+    StateMachineEngine stateMachineEngine;
 
 
     @Override
@@ -51,10 +69,34 @@ public class BussinessServiceImpl implements BussinessService {
         RootContext.bindBranchType(BranchType.TCC);
         log.info("tccPurchase begin ... xid: " + RootContext.getXID());
         String businessId = UuidUtils.generateUuid();
+        //整个事务的全局变量难道要用 redis来实现？用bussiness当做key?
         //第一个TCC 事务参与者
         storageTccApi.prepare(businessId, dto.getCommodityCode(), dto.getOrderCount());
         //第二个TCC 事务参与者
         orderTccApi.prepare(businessId, dto.getUserId(), dto.getCommodityCode(), dto.getOrderCount());
+        return "正在处理了";
+    }
+
+    @Override
+    public String sagaPurchase(PurchaseDTO dto) {
+        Map<String, Object> startParams = new HashMap<>(3);
+        String businessKey = String.valueOf(System.currentTimeMillis());
+        startParams.put("businessKey", businessKey);
+        startParams.put("commodityCode", dto.getCommodityCode());
+        startParams.put("count", dto.getOrderCount());
+        startParams.put("amount", new BigDecimal(dto.getOrderCount() * 200));
+        Map<String, Object> lastParams = new HashMap<>(3);
+        lastParams.put("throwException", "true");
+        startParams.put("params", lastParams);
+        
+        //整个事务的全局变量难道要用 redis来实现？用bussiness当做key?
+        //async test
+        String stateMachineName = "reduceInventoryAndBalance";
+        PurchaseCallback purchaseCallback = new PurchaseCallback();
+        StateMachineInstance inst = stateMachineEngine.startWithBusinessKeyAsync(stateMachineName, null,
+                businessKey, startParams, purchaseCallback);
+        log.info("saga transaction onStart XID:{},状态机状态：{}",
+                inst.getId(), inst.getStatus().getStatusString());
         return "正在处理了";
     }
 }
