@@ -10,7 +10,7 @@
     <artifactId>appbase-mvc</artifactId>
     <packaging>jar</packaging>
 
-    <name>webcommon</name>
+    <name>appbase-mvc</name>
 
     <dependencies>
         <!-- spring-boot-starter -->
@@ -36,6 +36,11 @@
         <dependency>
             <groupId>com.alibaba</groupId>
             <artifactId>fastjson</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.apache.dubbo</groupId>
+            <artifactId>dubbo</artifactId>
+            <scope>provided</scope>
         </dependency>
     </dependencies>
 </project>

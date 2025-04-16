@@ -29,3 +29,5 @@ nacos:
       - data-id: sentinel-dubbo.yaml
         type: yaml
         enable-remote-sync-config: true
+
+
