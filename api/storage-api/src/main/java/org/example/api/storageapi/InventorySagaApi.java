@@ -1,4 +1,4 @@
-package org.example.storageapi;
+package org.example.api.storageapi;
 
 /**
  * Inventory Actions

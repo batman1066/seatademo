@@ -1,4 +1,4 @@
-package org.example.orderapi;
+package org.example.api.orderapi;
 
 /**
  * OrderApi
@@ -8,6 +8,6 @@ package org.example.orderapi;
  **/
 public interface OrderApi {
 
-    String create(String userId,String commodityCode,
+    String create(String userId, String commodityCode,
                   Integer orderCount);
 }

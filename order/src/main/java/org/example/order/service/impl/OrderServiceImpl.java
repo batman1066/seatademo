@@ -3,7 +3,7 @@ package org.example.order.service.impl;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.dubbo.config.annotation.DubboReference;
 import org.apache.seata.core.context.RootContext;
-import org.example.accountapi.AccountApi;
+import org.example.api.accountapi.AccountApi;
 import org.example.order.service.OrderService;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.support.GeneratedKeyHolder;

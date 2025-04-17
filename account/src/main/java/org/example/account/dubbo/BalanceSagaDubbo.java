@@ -3,7 +3,7 @@ package org.example.account.dubbo;
 import com.alibaba.fastjson.JSON;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.dubbo.config.annotation.DubboService;
-import org.example.accountapi.BalanceSagaApi;
+import org.example.api.accountapi.BalanceSagaApi;
 
 import java.math.BigDecimal;
 import java.util.Map;

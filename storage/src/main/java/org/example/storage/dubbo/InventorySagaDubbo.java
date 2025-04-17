@@ -2,7 +2,7 @@ package org.example.storage.dubbo;
 
 import lombok.extern.slf4j.Slf4j;
 import org.apache.dubbo.config.annotation.DubboService;
-import org.example.storageapi.InventorySagaApi;
+import org.example.api.storageapi.InventorySagaApi;
 
 @DubboService
 @Slf4j

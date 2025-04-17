@@ -1,4 +1,4 @@
-package org.example.orderapi;
+package org.example.api.orderapi;
 
 
 /**

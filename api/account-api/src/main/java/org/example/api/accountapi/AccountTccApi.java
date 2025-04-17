@@ -1,4 +1,4 @@
-package org.example.accountapi;
+package org.example.api.accountapi;
 
 
 /**

@@ -6,7 +6,7 @@ import lombok.extern.slf4j.Slf4j;
 import org.apache.dubbo.config.annotation.DubboReference;
 import org.apache.seata.core.context.RootContext;
 import org.apache.seata.rm.tcc.api.*;
-import org.example.accountapi.AccountTccApi;
+import org.example.api.accountapi.AccountTccApi;
 import org.example.order.dao.OrderChangeRecordService;
 import org.example.order.dao.OrderTblService;
 import org.example.order.domain.OrderChangeRecordDO;

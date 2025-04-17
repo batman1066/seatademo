@@ -1,13 +1,13 @@
 package org.example.common;
 
-import org.springframework.stereotype.Component;
+import org.springframework.context.annotation.Configuration;
 
 import javax.annotation.PostConstruct;
 
-@Component
+@Configuration
 public class GlobalInit {
     @PostConstruct
     public void init() {
-       
+
     }
 }

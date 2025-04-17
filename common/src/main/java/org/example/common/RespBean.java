@@ -22,6 +22,11 @@ public class RespBean<T> implements Serializable {
     private String msg;
 
     /**
+     * 追踪信息 json
+     */
+    private Object traceMsg;
+
+    /**
      * 结果对象
      */
     private T data;
@@ -33,6 +38,12 @@ public class RespBean<T> implements Serializable {
 
     public RespBean(int code, String msg) {
         this(code, msg, null);
+    }
+
+    public RespBean(Object traceMsg, int code, String msg) {
+        this.traceMsg = traceMsg;
+        this.code = code;
+        this.msg = msg;
     }
 
     public RespBean(int code, String msg, T data) {

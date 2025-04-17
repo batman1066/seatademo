@@ -4,7 +4,11 @@ import org.apache.dubbo.config.spring.context.annotation.EnableDubbo;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
-@SpringBootApplication(scanBasePackages = {"org.example.web", "org.example.mvc"})
+@SpringBootApplication(scanBasePackages =
+        {"org.example.web",
+                "org.example.common",
+                "org.example.dubbo",
+                "org.example.mvc"})
 @EnableDubbo
 public class WebApplication {
 
