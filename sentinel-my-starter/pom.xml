@@ -1,9 +1,14 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
+    <parent>
+        <groupId>org.example</groupId>
+        <artifactId>seatademo</artifactId>
+        <version>0.0.1-SNAPSHOT</version>
+    </parent>
     <groupId>org.example</groupId>
     <artifactId>sentinel-my-starter</artifactId>
-    <version>0.0.1-SNAPSHOT</version>
+    <version>1.8.6</version>
     <name>sentinel-my-starter</name>
     <description>sentinel-my-starter</description>
 
@@ -19,15 +24,11 @@
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter</artifactId>
-            <version>2.7.18</version>
-            <scope>compile</scope>
             <optional>true</optional>
         </dependency>
         <dependency>
             <groupId>org.projectlombok</groupId>
             <artifactId>lombok</artifactId>
-            <version>1.18.36</version>
-            <scope>compile</scope>
             <optional>true</optional>
         </dependency>
         <!--sentinel-->
@@ -98,15 +99,31 @@
             <artifactId>sentinel-api-gateway-adapter-common</artifactId>
             <groupId>com.alibaba.csp</groupId>
             <version>${sentinel.version}</version>
-            <scope>compile</scope>
             <optional>true</optional>
         </dependency>
         <dependency>
             <artifactId>sentinel-spring-cloud-gateway-adapter</artifactId>
             <groupId>com.alibaba.csp</groupId>
             <version>${sentinel.version}</version>
-            <scope>compile</scope>
             <optional>true</optional>
         </dependency>
     </dependencies>
+    <build>
+        <plugins>
+            <!-- 源码打包插件 -->
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-source-plugin</artifactId>
+                <executions>
+                    <execution>
+                        <id>attach-sources</id>
+                        <phase>package</phase>
+                        <goals>
+                            <goal>jar</goal>
+                        </goals>
+                    </execution>
+                </executions>
+            </plugin>
+        </plugins>
+    </build>
 </project>

@@ -1,4 +1,4 @@
-package org.example.storageapi;
+package org.example.api.storageapi;
 
 /**
  * StorageApi
@@ -10,5 +10,5 @@ public interface StorageTccApi {
     //tcc
     Boolean prepare(String businessId, String commodityCode, Integer orderCount);
 
-    
+
 }

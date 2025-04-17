@@ -1,6 +1,6 @@
 package org.example.bussiness.service;
 
-import org.example.bussinessapi.dto.PurchaseDTO;
+import org.example.api.bussinessapi.dto.PurchaseDTO;
 
 /**
  * BussinessService

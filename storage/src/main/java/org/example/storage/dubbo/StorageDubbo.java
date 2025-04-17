@@ -2,7 +2,7 @@ package org.example.storage.dubbo;
 
 import org.apache.dubbo.config.annotation.DubboService;
 import org.example.storage.service.StorageService;
-import org.example.storageapi.StorageApi;
+import org.example.api.storageapi.StorageApi;
 
 import javax.annotation.Resource;
 

@@ -3,7 +3,7 @@ package org.example.order.dubbo;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.dubbo.config.annotation.DubboService;
 import org.example.order.biz.OrderTccBiz;
-import org.example.orderapi.OrderTccApi;
+import org.example.api.orderapi.OrderTccApi;
 
 import javax.annotation.Resource;
 

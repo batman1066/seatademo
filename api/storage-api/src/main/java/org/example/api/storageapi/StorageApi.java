@@ -1,4 +1,4 @@
-package org.example.storageapi;
+package org.example.api.storageapi;
 
 /**
  * StorageApi
@@ -7,5 +7,5 @@ package org.example.storageapi;
  * @date 2025/4/3 15:52
  **/
 public interface StorageApi {
-    String deduct( String commodityCode, Integer count);
+    String deduct(String commodityCode, Integer count);
 }

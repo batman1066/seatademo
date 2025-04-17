@@ -8,15 +8,15 @@ import org.apache.seata.core.model.BranchType;
 import org.apache.seata.saga.engine.StateMachineEngine;
 import org.apache.seata.saga.statelang.domain.StateMachineInstance;
 import org.apache.seata.spring.annotation.GlobalTransactional;
-import org.example.accountapi.BalanceSagaApi;
+import org.example.api.accountapi.BalanceSagaApi;
+import org.example.api.bussinessapi.dto.PurchaseDTO;
+import org.example.api.orderapi.OrderApi;
+import org.example.api.orderapi.OrderTccApi;
+import org.example.api.storageapi.InventorySagaApi;
+import org.example.api.storageapi.StorageApi;
+import org.example.api.storageapi.StorageTccApi;
 import org.example.bussiness.sagacallback.PurchaseCallback;
 import org.example.bussiness.service.BussinessService;
-import org.example.bussinessapi.dto.PurchaseDTO;
-import org.example.orderapi.OrderApi;
-import org.example.orderapi.OrderTccApi;
-import org.example.storageapi.InventorySagaApi;
-import org.example.storageapi.StorageApi;
-import org.example.storageapi.StorageTccApi;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
@@ -88,7 +88,7 @@ public class BussinessServiceImpl implements BussinessService {
         Map<String, Object> lastParams = new HashMap<>(3);
         lastParams.put("throwException", "true");
         startParams.put("params", lastParams);
-        
+
         //整个事务的全局变量难道要用 redis来实现？用bussiness当做key?
         //async test
         String stateMachineName = "reduceInventoryAndBalance";

@@ -2,7 +2,7 @@ package org.example.account.dubbo;
 
 import org.apache.dubbo.config.annotation.DubboService;
 import org.example.account.biz.AccountTccBiz;
-import org.example.accountapi.AccountTccApi;
+import org.example.api.accountapi.AccountTccApi;
 
 import javax.annotation.Resource;
 

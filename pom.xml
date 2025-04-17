@@ -21,7 +21,7 @@
         <java.version>1.8</java.version>
         <api.version>0.0.1-SNAPSHOT</api.version>
         <app.version>0.0.1-SNAPSHOT</app.version>
-        <sentinel-my-starter.version>0.0.1-SNAPSHOT</sentinel-my-starter.version>
+        <sentinel-my-starter.version>1.8.6</sentinel-my-starter.version>
 
         <nacos-starter.version>0.2.12</nacos-starter.version>
         <gateway-starter.version>3.1.9</gateway-starter.version>
@@ -43,12 +43,12 @@
         <module>order</module>
         <module>storage</module>
         <module>account</module>
+        <module>sentinel-my-starter</module>
     </modules>
     <dependencies>
         <dependency>
             <groupId>org.projectlombok</groupId>
             <artifactId>lombok</artifactId>
-            <version>1.18.36</version>
             <scope>provided</scope>
         </dependency>
     </dependencies>

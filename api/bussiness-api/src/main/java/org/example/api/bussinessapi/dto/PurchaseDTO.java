@@ -1,4 +1,4 @@
-package org.example.bussinessapi.dto;
+package org.example.api.bussinessapi.dto;
 
 import lombok.Data;
 

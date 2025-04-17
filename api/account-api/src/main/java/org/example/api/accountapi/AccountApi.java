@@ -1,4 +1,4 @@
-package org.example.accountapi;
+package org.example.api.accountapi;
 
 /**
  * AccountApi
@@ -8,7 +8,7 @@ package org.example.accountapi;
  **/
 public interface AccountApi {
     String test(String hehe);
-    
+
     String debit(String userId, Integer money);
 
 }
