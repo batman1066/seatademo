@@ -4,26 +4,28 @@ import com.baomidou.mybatisplus.annotation.IdType;
 import com.baomidou.mybatisplus.annotation.TableField;
 import com.baomidou.mybatisplus.annotation.TableId;
 import com.baomidou.mybatisplus.annotation.TableName;
-import java.io.Serializable;
 import lombok.Data;
+
+import java.io.Serializable;
 
 /**
  * 任何变动都记录
+ *
  * @TableName order_change_record
  */
-@TableName(value ="order_change_record")
+@TableName(value = "order_change_record")
 @Data
 public class OrderChangeRecordDO implements Serializable {
     /**
-     * 
+     *
      */
     @TableId(type = IdType.AUTO)
-    private Integer id;
+    private Long id;
 
     /**
-     * 
+     *
      */
-    private Integer orderId;
+    private Long orderId;
 
     /**
      * 业务id
@@ -37,7 +39,6 @@ public class OrderChangeRecordDO implements Serializable {
 
     /**
      * 目标数据
-
      */
     private Integer targetStatus;
 
