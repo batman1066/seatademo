@@ -42,6 +42,12 @@
             <groupId>org.example</groupId>
             <artifactId>sentinel-my-starter</artifactId>
         </dependency>
+        <!--shardingsphere-->
+        <dependency>
+            <groupId>org.apache.shardingsphere</groupId>
+            <artifactId>shardingsphere-jdbc-core-spring-boot-starter</artifactId>
+            <version>${shardingsphere.version}</version>
+        </dependency>
     </dependencies>
 
 </project>

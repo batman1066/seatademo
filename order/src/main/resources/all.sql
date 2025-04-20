@@ -1,3 +1,6 @@
+建两个库order和order_1
+,每个库三个order_tbl_0,order_tbl_1,order_tbl_2,其他都是单表不分片
+
 CREATE TABLE `order_tbl`
 (
     `id`             int NOT NULL AUTO_INCREMENT,

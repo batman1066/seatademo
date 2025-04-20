@@ -6,7 +6,91 @@ spring:
     sentinel:
       transport:
         port: 8723
-spring.datasource.driverClassName: com.mysql.cj.jdbc.Driver
-spring.datasource.url: jdbc:mysql://192.168.1.122:3306/order?useSSL=false&serverTimezone=Asia/Shanghai&characterEncoding=utf-8&autoReconnect=true&useUnicode=true&rewriteBatchedStatements=true&allowPublicKeyRetrieval=true
-spring.datasource.username: ${mysql.user:root}
-spring.datasource.password: ${mysql.password:123456}
+
+
+#spring.datasource.driverClassName: com.mysql.cj.jdbc.Driver
+#spring.datasource.url: jdbc:mysql://192.168.1.122:3306/order?useSSL=false&serverTimezone=Asia/Shanghai&characterEncoding=utf-8&autoReconnect=true&useUnicode=true&rewriteBatchedStatements=true&allowPublicKeyRetrieval=true
+# spring.datasource.username: ${mysql.user:root}
+# spring.datasource.password: ${mysql.password:123456}
+spring:
+  application:
+    name: order # 服务名称
+  shardingsphere:
+    # 数据源
+    datasource:
+      names: db0,db1
+      db0:
+        type: com.zaxxer.hikari.HikariDataSource
+        driver-class-name: com.mysql.cj.jdbc.Driver
+        jdbc-url: jdbc:mysql://192.168.1.122:3306/order?characterEncoding=utf8&useSSL=false&serverTimezone=Asia/Shanghai
+        username: root
+        password: 123456
+      db1:
+        type: com.zaxxer.hikari.HikariDataSource
+        driver-class-name: com.mysql.cj.jdbc.Driver
+        jdbc-url: jdbc:mysql://192.168.1.122:3306/order_1?characterEncoding=utf8&useSSL=false&serverTimezone=Asia/Shanghai
+        username: root
+        password: 123456
+    rules:
+      sharding:
+        # 分片算法
+        sharding-algorithms:
+          # 数据库
+          order-database-inline:
+            type: INLINE
+            props:
+              algorithm-expression: db$->{id % 2}
+          # t-order表
+          order-inline:
+            type: INLINE
+            props:
+              algorithm-expression: order_tbl_$->{id % 3}
+
+        # 主键生成策略
+        key-generators:
+          snowflake:
+            type: SNOWFLAKE
+            props:
+              worker-id: 001
+        tables:
+          #order_tbl---------
+          order_tbl:
+            actualDataNodes: db$->{0..1}.order_tbl_$->{0..2}
+            # 数据策略
+            databaseStrategy:
+              standard:
+                shardingColumn: id
+                shardingAlgorithmName: order-database-inline
+            # 表策略
+            tableStrategy:
+              standard:
+                shardingColumn: id
+                shardingAlgorithmName: order-inline
+            # 主键策略
+            keyGenerateStrategy:
+              column: id
+              keyGeneratorName: snowflake
+          #order_change_record---------
+          order_change_record:
+            actualDataNodes: db0.order_change_record
+            # 数据策略
+            databaseStrategy:
+              none: # 不分片
+            # 表策略
+            tableStrategy:
+              none: # 不分片
+            # 主键策略
+            keyGenerateStrategy:
+              column: id
+              keyGeneratorName: snowflake
+          #tcc_fence_log---------
+          tcc_fence_log:
+            actualDataNodes: db0.tcc_fence_log
+            # 数据策略
+            databaseStrategy:
+              none: # 不分片
+            # 表策略
+            tableStrategy:
+              none: # 不分片
+    props:
+      sql-show: true

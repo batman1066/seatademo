@@ -22,6 +22,7 @@
         <api.version>0.0.1-SNAPSHOT</api.version>
         <app.version>0.0.1-SNAPSHOT</app.version>
         <sentinel-my-starter.version>1.8.6</sentinel-my-starter.version>
+        <shardingsphere.version>5.0.0</shardingsphere.version>
 
         <nacos-starter.version>0.2.12</nacos-starter.version>
         <gateway-starter.version>3.1.9</gateway-starter.version>

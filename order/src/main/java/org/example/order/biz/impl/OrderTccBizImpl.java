@@ -37,6 +37,9 @@ public class OrderTccBizImpl implements OrderTccBiz {
         log.info("OrderTccServiceImpl 收到prepare, xid:" + xid + ", businessId:" + businessId);
         orderTccService.prepare(businessId, userId, commodityCode, orderCount);
         log.info("OrderTccServiceImpl 完成执行prepare, xid:" + xid + ", businessId:" + businessId);
+//        if (orderCount == 2) {
+//            throw new BusinessException(BusinessExceptionEnum.ACCOUNT_COMPUTE_ERROR.getCode(), "买太多了");
+//        }
         return true;
     }
 

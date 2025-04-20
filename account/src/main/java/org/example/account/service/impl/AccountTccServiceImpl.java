@@ -94,7 +94,7 @@ public class AccountTccServiceImpl implements AccountTccService {
         changeRecordDOQueryWrapper.eq(AccountChangeRecordDO::getSeataType, 1);
         changeRecordDOQueryWrapper.eq(AccountChangeRecordDO::getSeataStatus, 1);
         AccountChangeRecordDO accountChangeRecordPrepareDO = accountChangeRecordService.getOne(changeRecordDOQueryWrapper);
-        Integer orderMoney = accountChangeRecordPrepareDO.getTargetMoney() - accountChangeRecordPrepareDO.getSrcMoney();
+        Integer orderMoney = accountChangeRecordPrepareDO.getSrcMoney() - accountChangeRecordPrepareDO.getTargetMoney();
         //恢复数据
         jdbcTemplate.update("update account_tbl set money = money + ? where id = ?",
                 orderMoney, accountChangeRecordPrepareDO.getAccountId());

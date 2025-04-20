@@ -8,9 +8,9 @@ import org.apache.seata.core.context.RootContext;
 import org.apache.seata.rm.tcc.api.BusinessActionContext;
 import org.apache.seata.rm.tcc.api.BusinessActionContextUtil;
 import org.apache.seata.rm.tcc.api.LocalTCC;
+import org.apache.shardingsphere.transaction.annotation.ShardingSphereTransactionType;
+import org.apache.shardingsphere.transaction.core.TransactionType;
 import org.example.api.accountapi.AccountTccApi;
-import org.example.common.BusinessException;
-import org.example.common.constant.BusinessExceptionEnum;
 import org.example.order.dao.OrderChangeRecordService;
 import org.example.order.dao.OrderTblService;
 import org.example.order.domain.OrderChangeRecordDO;
@@ -43,6 +43,7 @@ public class OrderTccServiceImpl implements OrderTccService {
          */
 
     @Override
+    @ShardingSphereTransactionType(TransactionType.XA)
     @Transactional
     public Boolean prepare(String businessId,
                            String userId,
@@ -79,13 +80,11 @@ public class OrderTccServiceImpl implements OrderTccService {
         orderChangeRecord.setSeataType(1);
         orderChangeRecord.setSeataStatus(1);
         orderChangeRecordService.save(orderChangeRecord);
-        if (orderCount == 2) {
-            throw new BusinessException(BusinessExceptionEnum.ACCOUNT_COMPUTE_ERROR.getCode(), "买太多了");
-        }
         return true;
     }
 
     @Override
+    @ShardingSphereTransactionType(TransactionType.XA)
     @Transactional
     public Boolean commit(BusinessActionContext actionContext) {
         String xid = actionContext.getXid();
@@ -111,6 +110,7 @@ public class OrderTccServiceImpl implements OrderTccService {
     }
 
     @Override
+    @ShardingSphereTransactionType(TransactionType.XA)
     @Transactional
     public Boolean rollback(BusinessActionContext actionContext) {
         String xid = actionContext.getXid();
