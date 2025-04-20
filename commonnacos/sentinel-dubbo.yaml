@@ -1,0 +1,39 @@
+spring:
+  cloud:
+    compatibility-verifier:
+      enabled: false
+    sentinel:
+      transport:
+        dashboard: 192.168.1.122:8090
+      eager: true
+      # API分组&流控规则配置文件配置
+      datasource:
+        flow-rules:
+          nacos:
+            server-addr: ${nacos.config.server-addr:${spring.cloud.nacos.config.server-addr}}
+            data-id: ${spring.application.name}-flow-rules
+            namespace: dev-sentinel
+            group-id: DEFAULT_GROUP
+            username: ${nacos.config.username:${spring.cloud.nacos.config.username}}
+            password: ${nacos.config.password:${spring.cloud.nacos.config.password}}
+            data-type: json
+            rule-type: flow
+        degrade-rules:
+          nacos:
+            server-addr: ${nacos.config.server-addr:${spring.cloud.nacos.config.server-addr}}
+            data-id: ${spring.application.name}-degrade-rules
+            namespace: dev-sentinel
+            group-id: DEFAULT_GROUP
+            username: ${nacos.config.username:${spring.cloud.nacos.config.username}}
+            password: ${nacos.config.password:${spring.cloud.nacos.config.password}}
+            data-type: json
+            rule-type: degrade
+#配置sentinel写入nacos的连接信息
+sentinel:
+  write:
+    nacos:
+      serverAddr: ${nacos.config.server-addr:${spring.cloud.nacos.config.server-addr}}
+      namespace: dev-sentinel
+      groupId: DEFAULT_GROUP
+      username: ${nacos.config.username:${spring.cloud.nacos.config.username}}
+      password: ${nacos.config.password:${spring.cloud.nacos.config.password}}

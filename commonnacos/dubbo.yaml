@@ -1,0 +1,21 @@
+#自定义，以免下面反复写很长表达式
+mynacos:
+  address: ${nacos.config.server-addr:${spring.cloud.nacos.config.server-addr}}
+  username: ${nacos.config.username:${spring.cloud.nacos.config.username}}
+  password: ${nacos.config.password:${spring.cloud.nacos.config.password}}
+dubbo:
+  registry:
+    address: nacos://${mynacos.address}?username=${mynacos.username}&password=${mynacos.password}
+    # This will enable application-level service discovery only (the recommended service discovery method for Dubbo3).
+    # For users upgrading from Dubbo2.x, please set the value to 'all' for smooth migration.
+    register-mode: instance
+    parameters:
+      namespace: dev
+  protocol:
+    name: tri
+    port: ${dubbo.service.port}
+  application:
+    name: ${spring.application.name}
+    logger: slf4j
+  consumer:
+    check: false
